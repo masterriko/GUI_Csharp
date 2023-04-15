@@ -17,3 +17,7 @@ Slika programa:
 
 ## **NobelDB**
 Program izpiše vse Nobelove nagrajence za dano leto in področje. Ob nepravilnih vnosih nam bo program vrnil napako.
+
+Slika programa: 
+
+![NobelGUI](/NobelGUI/image.png)
