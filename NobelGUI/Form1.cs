@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using System.Xml;
 
 namespace NobelGUI
 {
@@ -18,8 +19,9 @@ namespace NobelGUI
             InitializeComponent();
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
+            IDictionary<string, string> translation = new Dictionary<string, string>() { { "medicina", "Medicine" }, { "mir", "Peace" }, { "kemija", "Chemistry" }, { "literatura", "Literature" } , { "fizika", "Physics" } , { "ekonomija", "Economics" } };
             String tekst = letnica.Text;
             int leto;
             List<string> selectedItems = new List<string>();
@@ -39,20 +41,15 @@ namespace NobelGUI
                 {
                     if (checkedListBox1.GetItemChecked(checkedListBox1.Items.IndexOf(item)))
                     {
-                        selectedItems.Add(item.ToString());
+                        selectedItems.Add(translation[item.ToString()]);
                     }
                 }
-                selectedItems.Add(leto.ToString());
                 label3.BackColor = Color.Azure;
                 label3.Text = "Iščem";
                 listBox1.Items.Clear();
-                await Task.Run(async () =>
-                {
-                    using (var conn = CreateConnection())
-                    {
-                        await ReadDataAsync(conn, selectedItems);
-                    }
-                });
+                SQLiteConnection sqlite_conn;
+                sqlite_conn = CreateConnection();
+                ReadData(sqlite_conn, selectedItems, tekst);
             }
 
         }
@@ -61,7 +58,7 @@ namespace NobelGUI
 
             SQLiteConnection sqlite_conn;
             // Create a new database connection:
-            sqlite_conn = new SQLiteConnection("Data Source= nobelDB.sqlite; Version = 3; New = False; Compress = True; "); ;
+            sqlite_conn = new SQLiteConnection("Data Source= nobelDB.db; Version = 3; New = True; Compress = True; ");
             // Open the connection:
             try
             {
@@ -73,23 +70,23 @@ namespace NobelGUI
             }
             return sqlite_conn;
         }
-        async Task ReadDataAsync(SQLiteConnection conn, List<String> selectedItems)
+        private void ReadData(SQLiteConnection conn, List<String> selectedItems, string leto)
         {
-            using (var cmd = conn.CreateCommand())
+            SQLiteDataReader sqlite_datareader;
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = conn.CreateCommand();
+            string query = $"SELECT winner FROM nobel WHERE yr= {leto} AND subject IN (";
+            query += string.Join(",", selectedItems.Select(item => $"'{item}'"));
+            query += ")";
+            sqlite_cmd.CommandText = query;
+
+            sqlite_datareader = sqlite_cmd.ExecuteReader();
+            while (sqlite_datareader.Read())
             {
-                string query = "SELECT winner FROM nobel WHERE YourColumn IN (";
-                query += string.Join(",", selectedItems.Select(item => $"'{item}'"));
-                query += ")";
-                cmd.CommandText = query;
-                using (var reader = await cmd.ExecuteReaderAsync())
-                {
-                    while (await reader.ReadAsync())
-                    {
-                        string myreader = reader.GetString(0);
-                        listBox1.Items.Add(myreader);
-                    }
-                }
+                string myreader = sqlite_datareader.GetString(0);
+                listBox1.Items.Add(myreader);
             }
+            conn.Close();
             label3.BackColor = Color.Green;
             label3.Text = "Opravljeno";
         }

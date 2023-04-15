@@ -79,7 +79,7 @@
             this.listBox1.ItemHeight = 16;
             this.listBox1.Location = new System.Drawing.Point(325, 60);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(424, 388);
+            this.listBox1.Size = new System.Drawing.Size(449, 388);
             this.listBox1.TabIndex = 3;
             // 
             // label1
@@ -108,9 +108,8 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(36, 306);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 16);
+            this.label3.Size = new System.Drawing.Size(0, 16);
             this.label3.TabIndex = 6;
-            this.label3.Text = "label3";
             // 
             // Form1
             // 
