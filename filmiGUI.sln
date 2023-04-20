@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NobelGUI", "NobelGUI\NobelG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kapljice", "Kapljice\Kapljice.csproj", "{354282B0-BF4E-4D20-B61A-EBBA8DB953E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NobelPostGres", "NobelPostGres\NobelPostGres.csproj", "{45544554-6E1B-4A4A-9DE9-49D486B3750D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{354282B0-BF4E-4D20-B61A-EBBA8DB953E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{354282B0-BF4E-4D20-B61A-EBBA8DB953E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{354282B0-BF4E-4D20-B61A-EBBA8DB953E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45544554-6E1B-4A4A-9DE9-49D486B3750D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45544554-6E1B-4A4A-9DE9-49D486B3750D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45544554-6E1B-4A4A-9DE9-49D486B3750D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45544554-6E1B-4A4A-9DE9-49D486B3750D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
