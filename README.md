@@ -21,3 +21,10 @@ Program izpiše vse Nobelove nagrajence za dano leto in področje. Ob nepravilni
 Slika programa: 
 
 ![NobelGUI](/NobelGUI/image.png)
+
+## **NobelPostGres**
+Program izpiše vse Nobelove nagrajence za dano leto in področje z uporabo PostGres baze.
+
+Slika programa: 
+
+![NobelPostGres](/NobelPostGres/image.png)
